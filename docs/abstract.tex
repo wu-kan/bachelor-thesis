@@ -9,16 +9,21 @@
 
 \cabstract{
 
-    摘要应概括论文的主要信息，应具有独立性和自含性，即不阅读论文的全文，就能获得必要的信息。摘要内容一般应包括研究目的、内容、方法、成果和结论，要突出论文的创造性成果或新见解，不要与绪论相混淆。语言力求精练、准确，以300-500字为宜。关键词是供检索用的主题词条，应体现论文特色，具有语义性，在论文中有明确的出处，并应尽量采用《汉语主题词表》或各专业主题词表提供的规范词。关键词与摘要应在同一页，在摘要的下方另起一行注明，一般列3-5个，按词条的外延层次排列（外延大的排在前面）。
+    随着单精度甚至更低精度浮点格式在现代AI应用中的普及，一个新基准HPL-AI被提出，以用于评估计算系统在混合精度计算场景上的性能。然而，该基准目前尚未有公开的通用实现。在本文中，我们实现了HPL-AI基准的首个开源的分布式实现，并在X86、CUDA、ARM64等多个平台对其正确性、通用性、可扩展性进行了测试。同时，我们将该实现移植到华为Atlas 800-9000训练服务器上，并针对其搭载的国产异构处理器华为昇腾910进行优化。实验结果表明，借助混合精度矩阵分解算法和数值迭代算法，我们的实现能获得与HPL相当甚至更高的计算精度，且带来显著性能提升。
 
 }
+
 % 中文关键词(每个关键词之间用“，”分开,最后一个关键词不打标点符号。)
-\ckeywords{本科毕业论文，\LaTeX\ 模板，中山大学}
+
+\ckeywords{HPL-AI，MPI，混合精度，矩阵分解，数值迭代，华为昇腾910}
 
 \eabstract{
     % 英文摘要及关键词内容应与中文摘要及关键词内容相同。中英文摘要及其关键词各置一页内。
-    The content of the English abstract is the same as the Chinese abstract, 250-400 content words are appropriate. Start another line below the abstract to indicate English keywords (Keywords 3-5).
-}
-% 英文文关键词(每个关键词之间用,分开, 最后一个关键词不打标点符号。)
-\ekeywords{undergraduate thesis, \LaTeX\ template, Sun Yat-Sen University}
 
+    With the popularity of 32-bit and even lower floating-point precision formats in modern AI applications, a new benchmark, HPL-AI, was proposed to evaluate the performance of computing systems in mixed-precision scenarios. However, the benchmark currently had no publicly available general implementation. In this thesis, we completed the first open-source general MPI implementation of HPL-AI benchmark, and tested its correctness, versatility, and scalability on multiple platforms including X86, CUDA, and ARM64. Meanwhile, we transplanted the implementation to the HUAWEI Atlas 800-9000 training server, and optimized for domestic heterogeneous processors HUAWEI Ascend 910 on the server. Experimental results showed that with the help of the mixed-precision matrix factorization algorithm and iterative refinement algorithm, our implementation could obtain the accuracy equal to or even higher than that of HPL with a significant performance improvement.
+
+}
+
+% 英文文关键词(每个关键词之间用,分开, 最后一个关键词不打标点符号。)
+
+\ekeywords{HPL-AI, MPI, mixed-precision, matrix factorization, iterative refinement, HUAWEI Ascend 910}

@@ -1,62 +1,52 @@
-\chapter{补充更多细节}
+\chapter{算子编译脚本}
 
-\section{补充图}
+\label{算子编译脚本}
 
-\subsection{补充图}
+\begin{python}
+#!/bin/sh
+# -*- python -*-
 
-这是附录内容，应该用宋体小四号字体。
+# This file is bilingual. The following shell code finds our preferred python.
+# Following line is a shell no-op, and starts a multi-line Python comment.
+# See https://stackoverflow.com/a/47886254
+""":"
+spack load py-numpy py-decorator py-sympy py-mpi4py
+time mpirun -n $1 python3 $0
+exit 0
+":"""
+# Line above is a shell no-op, and ends a python multi-line comment.
+# The code above runs this file with our preferred python interpreter.
 
-\begin{figure}[h!]
-	\centering
-	\makebox[0.16\textwidth]{\scriptsize 图像}
-	\makebox[0.16\textwidth]{\scriptsize 真值}
-	\makebox[0.16\textwidth]{\scriptsize Grid-5LSTM1}
-	\makebox[0.16\textwidth]{\scriptsize Grid-5LSTM3}
-	\makebox[0.16\textwidth]{\scriptsize Grid-5LSTM5} \\
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2007_000042.jpg}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2007_000042.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/1/2007_000042.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/3/2007_000042.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/5/2007_000042.png} \\
+import numpy  # atc
+import decorator  # atc
+import sympy  # atc
+import glob
+from subprocess import getoutput
+from mpi4py import MPI
 
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2011_003256.jpg}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2011_003256.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/1/2011_003256.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/3/2011_003256.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/5/2011_003256.png} \\
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2011_001159.jpg}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2011_001159.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/1/2011_001159.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/3/2011_001159.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/5/2011_001159.png} \\
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2011_000813.jpg}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2011_000813.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/1/2011_000813.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/3/2011_000813.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/5/2011_000813.png} \\
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2011_003145.jpg}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2011_003145.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/1/2011_003145.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/3/2011_003145.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/5/2011_003145.png} \\
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2009_004579.jpg}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/2009_004579.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/1/2009_004579.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/3/2009_004579.png}
-	\includegraphics[width=0.16\textwidth]{image/appendix1/5/2009_004579.png} \\
-	\color[rgb]{0.9,0.9,0.9}\bfseries
-	\begin{tabular}{*{7}{>{\centering\arraybackslash}p{0.10\textwidth}}}
-		\hline
-		\cellcolor[rgb]{0,0,0}  背景                 & \cellcolor[rgb]{0.5020,0,0} 飞机         & \cellcolor[rgb]{0,0.5020,0} 自行车 & \cellcolor[rgb]{0.5020,0.5020,0} 鸟 & \cellcolor[rgb]{0,0,0.5020} 船        & \cellcolor[rgb]{0.5020,0,0.5020} 瓶子 & \cellcolor[rgb]{0,0.5020,0.5020} 大巴
-		\\
-		\hline
-		\cellcolor[rgb]{0.5020,0.5020,0.5020} 汽车   & \cellcolor[rgb]{0.2510,0,0} 猫           & \cellcolor[rgb]{0.7529,0,0} 椅子   & \cellcolor[rgb]{0.2510,0.5020,0} 牛 & \cellcolor[rgb]{0.7529,0.5020,0} 桌子 & \cellcolor[rgb]{0.2510,0,0.5020} 狗   & \cellcolor[rgb]{0.7529,0,0.5020} 马   \\
-		\hline
-		\cellcolor[rgb]{0.2510,0.5020,0.5020} 摩托车 & \cellcolor[rgb]{0.7529,0.5020,0.5020} 人 & \cellcolor[rgb]{0,0.2510,0} 盆栽   & \cellcolor[rgb]{0.5020,0.2510,0} 羊 & \cellcolor[rgb]{0,0.7529,0} 沙发      & \cellcolor[rgb]{0.5020,0.7529,0} 火车 & \cellcolor[rgb]{0,0.2510,0.5020} 电视 \\
-		\hline
-	\end{tabular}
+if __name__ == "__main__":
 
-	\caption{一个配有彩色表格的插图}
-\end{figure}
+    comm = MPI.COMM_WORLD
+    commSize = comm.Get_size()
+    commRank = comm.Get_rank()
 
-\endinput
+    singleopList = []
+
+    if commRank == 0:
+        for singleop in glob.glob('*.json'):
+            if singleop not in singleopList:
+                if len(glob.glob(singleop[0:-4]+'om')) == 0:
+                    singleopList.append(singleop)
+
+    singleopList = comm.bcast(sorted(singleopList), root=0)
+
+    for i in range(commRank, len(singleopList), commSize):
+        log = {}
+        log['taskRank'] = i
+        log['taskSize'] = len(singleopList)
+        log['commRank'] = commRank
+        log['commSize'] = commSize
+        log['command'] = 'atc --soc_version=Ascend910 --output=. --singleop='+singleopList[i]
+        log['output'] = getoutput(log['command'])
+        print(log)
+\end{python}

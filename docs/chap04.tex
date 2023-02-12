@@ -1,341 +1,449 @@
-\chapter{简单的使用例子}
-\label{cha:usage-example}
+\chapter{实验及分析}
+\label{实验及分析}
 
-本部分将会根据毕设论文的写作需要，放置相关的例子和代码段供大家参考，方便大家的论文写作，如果更多有用的Latex使用例子也会欢迎提出PR，贡献更多的例子。
+\section{硬件环境}
+\label{硬件环境}
 
-\section{图像的插入}
+本节将介绍用于移植测试的华为Atlas 800-9000训练服务器和X86+CUDA对照组平台硬件配置。
 
-\subsection{镶嵌在文中的图像}
-\begin{wrapfigure}{r}{0.5\linewidth}
-    \centering
-    \includegraphics[width=0.5\textwidth]{image/chap04/confusion.pdf}
-    \caption{镶嵌在文中的图像}
-    \label{fig:image-embedding-text}
-\end{wrapfigure}
-论文主体是毕业论文的主要部分，必须言之成理，论据可靠，严格遵循本学科国际通行的学术规范。在写作上要注意结构合理、层次分明、重点突出，章节标题、公式图表符号必须规范统一。论文主体的内容根据不同学科有不同的特点，一般应包括以下几个方面： （1）毕业论文（设计）总体方案或选题的论证； （2）毕业论文（设计）各部分的设计实现，包括实验数据的获取、数据可行性及有效性的处理与分析、各部分的设计计算等； （3）对研究内容及成果的客观阐述，包括理论依据、创新见解、创造性成果及其改进与实际应用价值等； （4）论文主体的所有数据必须真实可靠，凡引用他人观点、方案、资料、数据等，无论曾否发表，无论是纸质或电子版，均应详加注释。自然科学论文应推理正确、结论清晰；人文和社会学科的论文应把握论点正确、论证充分、论据可靠，恰当运用系统分析和比较研究的方法进行模型或方案设计，注重实证研究和案例分析，根据分析结果提出建议和改进措施等。
-论文主体是毕业论文的主要部分，必须言之成理，论据可靠，严格遵循本学科国际通行的学术规范。在写作上要注意结构合理、层次分明、重点突出，章节标题、公式图表符号必须规范统一。论文主体的内容根据不同学科有不同的特点，一般应包括以下几个方面： （1）毕业论文（设计）总体方案或选题的论证； （2）毕业论文（设计）各部分的设计实现，包括实验数据的获取、数据可行性及有效性的处理与分析、各部分的设计计算等； （3）对研究内容及成果的客观阐述，包括理论依据、创新见解、创造性成果及其改进与实际应用价值等； （4）论文主体的所有数据必须真实可靠，凡引用他人观点、方案、资料、数据等，无论曾否发表，无论是纸质或电子版，均应详加注释。自然科学论文应推理正确、结论清晰；人文和社会学科的论文应把握论点正确、论证充分、论据可靠，恰当运用系统分析和比较研究的方法进行模型或方案设计，注重实证研究和案例分析，根据分析结果提出建议和改进措施等。
+\subsection{华为Atlas 800-9000训练服务器简介}
+\label{华为Atlas800-9000训练服务器简介}
 
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
 
-
-\subsection{单张图像的插入}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{image/chap04/illustration/hole.pdf}
-    \caption{单张图像}
-    \label{fig:hole}
-\end{figure}
-
-
-\subsection{多张图像的并排插入}
-
-
-\begin{figure}[h!]%文中的Grid-LSTM模型做的语义图像分割的例子
-    \centering
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_000799.jpg}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_002094.jpg}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_004483.jpg}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_003194.jpg}
-    \\
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_000799.pdf}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_002094.pdf}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_004483.pdf}
-    \includegraphics[width=.2\textwidth,height=.15\textwidth]{image/chap04/example/2007_003194.pdf}
-    \caption{并排的多张图像}
-    \label{fig:multi-image-example1}
-\end{figure}
-
-
-\begin{figure}[h]
-    \centering
-    \makebox[0.11\textwidth]{\scriptsize 图像}
-    \enspace
-    \makebox[0.11\textwidth]{\scriptsize 真值}
-    \enspace
-    \makebox[0.11\textwidth]{\scriptsize CNN+5LSTM\textbf{1}}
-    \enspace\thinspace
-    \makebox[0.11\textwidth]{\scriptsize CNN+5LSTM\textbf{2}}
-    \enspace\thinspace
-    \makebox[0.11\textwidth]{\scriptsize CNN+5LSTM\textbf{3}}
-    \enspace\thinspace
-    \makebox[0.11\textwidth]{\scriptsize CNN+5LSTM\textbf{4}}
-    \enspace\thinspace
-    \makebox[0.11\textwidth]{\scriptsize CNN+5LSTM\textbf{5}}\\
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663.jpg}
-    \enspace\thinspace %\hfill
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663.png}
-    \enspace\thinspace
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663_1.png}
-    \enspace\thinspace
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663_2.png}
-    \enspace\thinspace
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663_3.png}
-    \enspace\thinspace
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663_4.png}
-    \enspace\thinspace
-    \includegraphics[width=0.11\textwidth]{image/chap04/improvement/2007_000663_5.png}
-    \enspace\thinspace
-    \caption{并排的多张图像加各自的注解}
-    \label{fig:improvement}
-\end{figure}
-
-
-\subsection{两列图像的插入}
-
-\begin{figure}[h!] % image examples & compare
-    \begin{subfigure}{0.55\textwidth}
-        \makebox[0.18\textwidth]{\scriptsize Grid-5LSTM}
-        \makebox[0.18\textwidth]{\scriptsize FCN-8s\cite{long2015fully}}
-        \makebox[0.18\textwidth]{\scriptsize SDS\cite{hariharan2014simultaneous}}
-        \makebox[0.18\textwidth]{\scriptsize 真值}
-        \makebox[0.18\textwidth]{\scriptsize 图像} \\
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/my_horse.pdf}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/fcn_horse.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/sds_horse.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/gt_horse.pdf}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/im_horse.pdf}
-        \\
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/my_motor.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/fcn_motor.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/sds_motor.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/2007_005173.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/2007_005173.jpg}
-        \\
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/my_sheep.pdf}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/fcn_sheep.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/sds_sheep.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/gt_sheep.pdf}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/im_sheep.pdf}
-        \\
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/my_boat.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/fcn_boat.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/sds_boat.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/2007_004241.png}
-        \includegraphics[width=0.18\textwidth]{image/chap04/result/compare/2007_004241.jpg}
-        \caption{左边的图像}
-        \label{fig:compare1}
-    \end{subfigure}
-    \begin{subfigure}{0.4\textwidth}
-        \centering
-        %		\makebox[0.3\textwidth]{} \\
-        %		\makebox[0.3\textwidth]{} \\
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2010_005284.jpg}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2007_003349.jpg}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2009_004507.jpg}
-        \\
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2010_005284.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2007_003349.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/2009_004507.png} \\
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/zoom_bus.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/zoom_bird.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/zoom_dog.png} \\
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/deeplab_bus.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/deeplab_bird.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/deeplab_dog.png} \\
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/my_bus.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/my_bird.png}
-        \includegraphics[width=0.25\textwidth]{image/chap04/result/compare/my_dog.png}
-        \caption{右边的图像}
-        \label{fig:compare2}
-    \end{subfigure}
-    \caption{复杂的两列对象的插入}
-    \label{fig:complex}
-\end{figure}
-
-
-\clearpage
-
-\section{表格的插入}
+结合产品主页\footnote{\url{https://e.huawei.com/en/products/cloud-computing-dc/atlas/atlas-800-training-9000}}和本地运行 \lstinline{dmidecode} 指令的结果，我们得到\autoref{华为Atlas800-9000主要配置表}。由于是在单机上进行的算力测试，此处省略了网络和存储等无关参数。
 
 \begin{table}[h] %voc table result
     \centering
-    \caption{典型的实验对比表格}
-    \begin{tabular}{*{4}{c}}
-        \toprule
-        Method                                & Pixel Acc.    & Mean Acc.     & Mean Iu.      \\
-        \midrule
-        Liu等人\cite{liu2011sift}             & 76.7          & -             & -             \\
-        Tighe等人\cite{tighe2013finding}      & 78.6          & 39.2          & -             \\
-        FCN-16s\cite{long2015fully}           & 85.2          & \textbf{51.7} & 39.5          \\
-        Deeplab-LargeFOV\cite{chen14semantic} & 85.6          & 51.2          & 39.7          \\
-        \midrule
-        Grid-LSTM5                            & \textbf{86.2} & 51.0          & \textbf{41.2} \\
-        \bottomrule
-    \end{tabular}
-    \label{tab:siftflow}
-\end{table}
-
-\begin{table}[h] %voc table result
-    \centering
-    \caption{复杂一些的表格}
+    \caption{华为Atlas800-9000主要配置表}
+    \label{华为Atlas800-9000主要配置表}
     \resizebox{\textwidth}{!}{
-        \begin{tabular}{c|*{20}{c}|c}
+        \begin{tabular}{c|c|c|c}
             \toprule
-            Method                    & aero          & bike          & bird          & boat          & bottle        & bus           & car           & cat           & chair         & cow           & table         & dog           & horse         & mbike         & person        & plant         & shep          & sofa          & train         & tv            & mIoU.         \\
+            组件 & 数量             & 型号         & 参数                          \\
             \midrule
-            CNN                       & 72.6          & 29.6          & 70.2          & 53.1          & 65.1          & 81.0          & 74.3          & 79.8          & 25.0          & 64.8          & 47.8          & 69.5          & 66.2          & 65.2          & 74.2          & 42.1          & 69.6          & 38.8          & 74.4          & 58.6          & 62.5          \\
-            CNN+\textbf{1}LSTM        & 71.5          & 30.6          & 70.5          & 53.8          & 64.9          & 82.4          & 77.1          & 79.5          & 25.1          & 65.8          & 47.8          & 71.5          & 64.6          & 67.0          & 74.0          & 43.9          & 69.6          & 38.6          & 74.9          & 59.4          & 63.0          \\
-            CNN+\textbf{2}LSTM        & 76.1          & 32.6          & 72.1          & 57.0          & 65.3          & 83.6          & 75.4          & 81.7          & 24.7          & 69.3          & 47.5          & 72.3          & 68.9          & 69.5          & 74.7          & 41.5          & 69.8          & 38.3          & 77.8          & 62.1          & 64.3          \\
-            CNN+\textbf{3}LSTM        & 77.7          & 32.3          & 72.6          & 60.0          & 68.3          & 85.5          & 78.5          & 82.3          & 25.3          & 71.1          & 49.7          & 71.5          & 69.7          & 70.8          & 75.9          & 47.9          & 71.2          & 38.9          & 80.2          & 61.7          & 65.8          \\
-            CNN+\textbf{4}LSTM        & 79.1          & \textbf{33.7} & \textbf{73.6} & \textbf{62.0} & \textbf{70.4} & 85.5          & \textbf{80.9} & 83.7          & \textbf{24.1} & 70.7          & 45.7          & 73.7          & 69.6          & 72.1          & 75.6          & 47.2          & \textbf{76.0} & 37.3          & 80.5          & 62.2          & 66.4          \\
-            CNN+\textbf{5}LSTM        & \textbf{79.9} & 33.6          & \textbf{73.6} & 61.7          & 68.0          & \textbf{88.5} & \textbf{80.9} & \textbf{84.0} & 23.6          & \textbf{71.3} & \textbf{49.7} & \textbf{73.1} & \textbf{71.3} & \textbf{72.9} & \textbf{76.4} & \textbf{48.9} & 75.1          & \textbf{38.1} & \textbf{84.5} & \textbf{63.8} & \textbf{67.2} \\
-            \midrule
-            CNN+\textbf{5}LSTM$^\dag$ & 84.8          & 36.4          & 82.0          & 69.4          & 73.0          & 87.2          & 81.8          & 86.1          & 34.5          & 82.4          & 53.1          & 81.5          & 77.4          & 79.0          & 81.3          & 54.8          & 81.1          & 47.0          & 84.3          & 67.3          & 72.3          \\
+            CPU  & 4                & 华为鲲鹏920  & \tabincell{c}{48Cores @2.6GHz \\L1 Cache 6144KB\\L2 Cache 24567KB\\L3 Cache 49152 kB} \\
+            \hline
+            内存 & \tabincell{c}{24                                                \\(4 Socket$\times$\\6 Channel)} & 镁光 36ASF4G72PZ-2G9E2 & \tabincell{c}{DDR4\\32GB\\2933 MT/s\\1.2V}\\
+            \hline
+            NPU  & 8                & 华为昇腾910A & \tabincell{c}{架构：达芬奇    \\FP16算力：320 TFLOPS\\HBM: 32GB, 1200GB/s} \\
             \bottomrule
         \end{tabular}}
-    \label{tab:vocval}
 \end{table}
 
+容易看出，这台华为Atlas 800-9000是一台高性能服务器，有高达192个ARM64 CPU核，内存总容量共计768GB。同时，其上搭载了8块特殊的``NPU''（neural-network processing units，神经网络处理器），已在\autoref{华为昇腾910硬件架构}详细分析。
 
-\section{公式}
-\label{sec:formula}
-没有编号的公式
-\begin{align*}
-    \begin{split}
-        \label{eq:feedforward}
-        \mybold{z}^{(l)} & = \mybold{W}^{(l)}\mybold{a}^{(l-1)} + \mybold{b}^{(l)} \\
-        \mybold{a}^{(l)} & = f(\mybold{z}^{(l)})
-    \end{split}
-\end{align*}
-公式中含有中文
-\begin{align}
-    \begin{split}
-        \mbox{像素准确率} &= \sum_{i=1}^{n_{cl}}n_{ii} / \sum_{i=1}^{n_{cl}}t_i \\
-        \mbox{平均像素准确率} &= \frac{1}{n_{cl}} \sum_{i=1}^{n_{cl}}(n_{ii}/ t_i) \\
-        \mbox{Mean IU} &= \frac{1}{n_{cl}} \sum_{i=1}^{n_{cl}}\frac{n_{ii}}{t_i + \sum_j^{n_{cl}} n_{ji} - n_{ii}}
-    \end{split}
-\end{align}
-公式中含有矩阵
-\begin{equation}
-    \textbf{H} = \begin{bmatrix}
-        I*\mybold{x}_i \\ \textbf{h}
-    \end{bmatrix}
-\end{equation}
-每行后面都有编号的公式
-\begin{align}
-    \frac{\partial}{\partial W_{ij}^{(l)}} J(\mybold{W},\mybold{b};\mybold{x},y) & = \frac{\partial J(\mybold{W},\mybold{b};\mybold{x},y)}{\partial z_i^{(l+1)}}\cdot \frac{\partial z_i^{(l+1)}}{\partial W_{ij}^{(l)}} = \delta_i^{(l+1)}a_j^{(l)} \\
-    \frac{\partial}{\partial b_i^{(l)}} J(\mybold{W},\mybold{b};\mybold{x},y)    & = \frac{\partial J(\mybold{W},\mybold{b};\mybold{x},y)}{\partial z_i^{(l+1)}}\cdot \frac{\partial z_i^{(l+1)}}{\partial b_i^{(l)}} = \delta_i^{(l+1)}
-\end{align}
+\subsection{X86+CUDA对照平台简介}
 
-\section{算法流程图}
-\label{sec:algorithm}
-\begin{algorithm}[h]
-    \KwIn{$m$个训练样本}
-    \lFor{$l=1$ \emph{\KwTo} $n_l$}{
-        初始化：$\Delta \mybold{W}^{(l)}=0$，$\Delta \mybold{b}^{(l)}=0$}
-    \ForEach{训练样本}{
-        \lFor{$l=1$ \emph{\KwTo} $n_l-1$}{
-            前向传播：$\mybold{z}^{(l+1)}=\mybold{W}^la^l+\mybold{b}^l$,$\mybold{a}^{(l+1)}=f(\mybold{z}^{(l+1)})$}
-        输出误差计算：$\delta^{(n_l)} = \frac{\partial}{\partial \mybold{z}^{(n_l)}} J(\mybold{W},\mybold{b};\mybold{x},y)$\;
-        \lFor{$l=n_l-1$ \emph{\KwTo} $1$}{
-            后向传播：$\delta^{(l)} = \bigl((\mybold{W}^{(l)})^T \delta^{(l+1)}\bigr)f'(\mybold{z}^{(l)})$}
-        \ForAll{层l}{
-            计算梯度：$\nabla_{\mybold{W}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)=\delta^{(l+1)}(\mybold{a}^{(l)})^T$ \\
-            \hspace{60pt}$\nabla_{\mybold{b}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)=\delta^{(l+1)}$\;
-            累加梯度：$\Delta \mybold{W}^{(l)} \leftarrow \Delta \mybold{W}^{(l)} + \nabla_{\mybold{W}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)$; \\
-            \hspace{60pt}$\Delta \mybold{b}^{(l)} \leftarrow \Delta \mybold{b}^{(l)} + \nabla_{\mybold{b}^{(l)}}J(\mybold{W},\mybold{b};\mybold{x},y)$\;
-        }
-    }
-    \ForAll{层$l$}{
-        更新权重：$\mybold{W}^{(l)} \leftarrow \mybold{W}^{(l)} - \alpha \biggl[\frac 1m \Delta \mybold{W}^{(l)}\biggr]$ \\
-        \hspace{60pt} $\mybold{b}^{(l)} \leftarrow \mybold{b}^{(l)} - \alpha \biggl[\frac 1m \Delta \mybold{b}^{(l)}\biggr]$
-    }
-    \caption{梯度下降算法}
-    \label{algo:sgd}
-\end{algorithm}
+结合结合产品主页\footnote{\url{https://www.nvidia.com/en-us/data-center/a100/}}和本地运行 \lstinline{dmidecode} 指令的结果，我们得到\autoref{X86+CUDA对照组平台主要配置表}。由于是在单机上进行的算力测试，此处省略了网络和存储等无关参数。
 
-\section{例子、定理与证明}
+\begin{table}[h] %voc table result
+    \centering
+    \caption{X86+CUDA对照组平台主要配置表}
+    \label{X86+CUDA对照组平台主要配置表}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{c|c|c|c}
+            \toprule
+            组件 & 数量             & 型号                  & 参数                                    \\
+            \midrule
+            CPU  & 2                & AMD 霄龙 7542         & \tabincell{c}{32Cores, 64Threads@2.9GHz \\L1 Cache 2MB\\L2 Cache 16MB\\L3 Cache 128 MB} \\
+            \hline
+            内存 & \tabincell{c}{32                                                                   \\(4 Socket$\times$\\8 Channel)} & 海力士 HMAA8GR7AJR4N-XN & \tabincell{c}{DDR4\\64GB\\2933 MT/s\\1.2V}\\
+            \hline
+            GPU  & 8                & 英伟达 A100-SXM4-40GB & \tabincell{c}{架构：安培                \\FP16算力：312 TFLOPS（TensorCore）\\
+                FP32算力：156 TFLOPS（TensorCore）                                                    \\
+                HBM: 40GB, 1555GB/s}                                                                  \\
+            \bottomrule
+        \end{tabular}}
+\end{table}
 
-\begin{eg}
-    这是一个例子, 用以验证特殊环境的字体成功更改为楷体.
-\end{eg}
+该平台作为对照组的优势是，其拥有与移植平台相近的配置，且搭载的加速卡拥有相同的7nm制程、相近的FP16理论矩阵算力。当然，仍然要指出的是，华为Atlas 800-9000所搭载的鲲鹏920与对照组AMD霄龙7542的架构完全不同，前者是ARM64，后者是X86；并且，前者拥有更多的核心，后者有更高的频率和更大的Cache。
 
-\begin{theorem}[定理例子]
-    \label{the:example-theorem}
-    这是一个定理。
-\end{theorem}
+\section{软件环境}
 
-\begin{corollary}[推论例子]
-    \label{the:example-corollary}
-    这是一个推论。
-\end{corollary}
+\autoref{测试平台软件环境表}给出了我们的实验环境，表中软件除了针对昇腾异构加速卡特殊优化的hpl-ai@2.3d+ascendcl及其依赖CANN V100R020C10外，均可通过包管理器spack\cite{2015The}与我们的spack软件扩展源一键安装。\footnote{我们使用了spack包管理器管理需要的诸多软件依赖，其优势在于提供了一套易用的源码安装管理。我们也将我们的HPL-AI发布在\url{https://github.com/SYSU-SCC/sysu-scc-spack-repo}中，这使得其可以很容易地在其他环境中被部署、复现。}
 
-\begin{lemma}[引理例子]
-    \label{the:example-lemma}
-    这是一个引理。
-\end{lemma}
+\begin{table}[h]
+    \centering
+    \caption{测试平台软件环境表}
+    \label{测试平台软件环境表}
+    \resizebox{\textwidth}{!}{
 
-这里我们先给出\autoref{the:example-theorem-sysu-thesis}
+        \begin{tabular}{c|c|c}
+            \toprule
 
-\begin{theorem}[中山大学毕业论文模板定理]
-    \label{the:example-theorem-sysu-thesis}
-    中山大学 \LaTeX 毕业论文模板\cite{sysu-thesis}可以用于写各种证明。
-\end{theorem}
+            平台     & 华为Atlas 800-9000                            & X86+CUDA对照组平台        \\
 
-下面我们对\autoref{the:example-theorem-sysu-thesis}进行证明：
+            \midrule
 
+            操作系统 & linux-centos7-aarch64                         & linux-debian9-zen2        \\
 
-\begin{proof}
+            \hline
 
-    下面我们开始证明：
+            驱动版本 & ascend-dmi 20.1.rc1                           & NVIDIA-SMI 450.80.02      \\
 
-    由本定理的证明可见，我可以引用\autoref{the:example-theorem}和引理\ref{the:example-corollary}以及推论\ref{the:example-lemma}来证明我这个 \LaTeX 可以用来写各种证明。 \\
+            \hline
 
-    \autoref{the:example-theorem-sysu-thesis}得证。
-\end{proof}
+            特定软件 & \begin{tabular}[c]{@{}c@{}}
+                CANN V100R020C10 \\
+                hpl-ai@2.3d\%gcc@7.5.0+ascendcl
+            \end{tabular}                     & \begin{tabular}[c]{@{}c@{}}
+                cuda@11.0.2\%gcc@7.5.0            \\
+                blaspp@2021.04.01\%gcc@7.5.0+cuda \\
+                hpl-ai@2.3d+cuda                  \\
+                hpl-ai@2.3d+cuda $\backslash$     \\
+                cublasGemmEx\_computeType=fp16
+            \end{tabular} \\
 
-\section{代码}
+            \hline
 
-本模版支持在论文中插入代码片段，或直接从源码文件进行插入。
-例如，在论文中插入代码片段的效果为：
-\begin{python}
-    def func():
-    print("hello world")
-    with open('./output.txt', 'w') as f:
-    L = f.readlines()
+            通用软件 & \multicolumn{2}{c}{\begin{tabular}[c]{@{}c@{}}
+                    spack 0.16.1                              \\
+                    gcc@7.5.0                                 \\
+                    openmpi@3.1.6\%gcc@7.5.0                  \\
+                    openblas@0.3.13\%gcc@7.5.0 threads=openmp \\
+                    hpl@2.3\%gcc@7.5.0                        \\
+                    blaspp@2021.04.01\%gcc@7.5.0              \\
+                    hpl-ai@2.3d\%gcc@7.5.0                    \\
+                \end{tabular}}                             \\
 
-    if __name__ == "__main__":
-    # this is a comment line
-    func()
-\end{python}
-也可在行内插入代码片段，例如：Python中重载加法运算符的函数为\pyinline{__add__}，类的标识符为\pyinline{class}。
-此外，还可直接插入代码文件，例如插入\texttt{./code/demo.cpp}的效果为：
-\lstinputlisting[style=sysucpp]{code/demo.cpp}
+            \bottomrule
+        \end{tabular}}
+\end{table}
 
+\subsection{对比软件介绍}
 
-\section{其他的一些用法}
-\label{sec:font}
-\subsection{子章节编号}
-\label{sec:font:subsection}
-\subsubsection{更小的章节}
-\label{sec:font:subsection:subsub}
-更小的章节编号也是支持的。
+\autoref{对比软件介绍表}列出了我们实现的HPL-AI软件包的和用于对照组的开源HPL软件包。
 
-可以如此引用章节：
+\begin{table}[h] %voc table result
+    \centering
+    \caption{对比软件介绍表}
+    \label{对比软件介绍表}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{c|c|c}
+            \toprule
+            软件                 & 运行设备 & 介绍                             \\
+            \midrule
+            hpl@2.3              & CPU      & \tabincell{c}{HPL标准实现。      \\用于对照组。}\\
+            \hline
+            hpl-ai@2.3d          & CPU      & \tabincell{c}{我们的HPL-AI实现。 \\在LU分解阶段使用单精度。}\\
+            \hline
+            hpl-ai@2.3d+ascendcl & CPU+NPU  & \tabincell{c}{
+                我们的HPL-AI实现。                                             \\
+                在LU分解阶段使用单精度。                                       \\
+                GEMM阶段会在NPU上将FP32格式的矩阵继续压缩成FP16格式，          \\
+                然后调用MatMulV2。}                                            \\
+            \hline
+            \tabincell{c}{
+            hpl-ai@2.3d+cuda}    & CPU+GPU  & \tabincell{c}{
+                我们的HPL-AI实现。                                             \\
+                在LU分解阶段使用单精度。                                       \\
+                使用GPU完成gemm和trsm过程。}                                   \\
+            \hline
+            \tabincell{c}{
+                hpl-ai@2.3d+cuda $\backslash$                                  \\
+                cublasGemmEx\_computeType=fp16
+            }                    & CPU+GPU  & \tabincell{c}{
+                我们的HPL-AI实现。                                             \\
+                在LU分解阶段使用单精度。                                       \\
+                gemm阶段会在GPU上调用cublasGemmEx，                            \\
+                将FP32格式的矩阵继续压缩成FP16格式并进行矩阵乘法。}            \\
+            \bottomrule
+        \end{tabular}}
+\end{table}
+
+\subsection{软件依赖}
+\label{软件依赖}
+
+CPU厂商通常会针对自己的硬件发布经过调优的BLAS实现，如Intel的mkl库、AMD的amdblis库等（这些厂商甚至会发布针对自己硬件优化的Linpack实现，如Intel的mp\_linpack、NVIDIA的hpc-benchmark），但这为我们在不同平台上进行性能比较带来了不便。一方面，这些调优后的数学库大部分情况下都不能移植到其他平台（或是性能表现很差），难以控制实验中的变量；另一方面，其实现通常不开源，这使得我们更难分析运行时的瓶颈是来自于算法本身还是调用的BLAS。为此，我们在测试时使用openblas@0.3.13\footnote{需要注意的是，spack 0.16.1内建的openblas@0.3.5存在问题，详见\autoref{运行策略}。我们在自己的spack软件扩展源提供了修复该错误的openblas@0.3.13及改变软件依赖的blaspp安装脚本。}，该库提供了X86、ARM、RISC-V等多种CPU平台的开源实现。
+
+同理，我们选择了openmpi@3.1.6作为作为统一的MPI依赖，并且所有提供源码的软件包统一使用gcc@7.5.0从源码编译。
+
+\subsection{MPI进程及绑核设置}
+
+\autoref{硬件环境}中提到，不管是华为Atlas 800-9000还是用于对照的X86+CUDA平台，都有八张加速卡。我们让单张加速卡对应一个单独进程，因此如果没有特别提及的情况下统一使用八个MPI进程。同时，使用openmpi@3.1.6默认的绑核设置。
+
+此外，由于下述实验都是在单机上进行的，因此不涉及MPI通信协议的选择。
+
+\subsection{OpenMP线程数设置}
+
+即使是GPU/NPU上运行的HPL-AI，都有相当一部分计算量（主要是level-1和level-2的BLAS调用）是放在CPU上的，因此需要设置openblas库运行时用于单进程的线程数量。设置的原则是充分使用CPU的每个计算核心。对于Atlas，我们设置8个进程每个进程24线程；对于X86+CUDA对照平台，我们设置8个进程每个进程16线程。
+
+\subsection{HPL.dat}
+
+运行参数的设置是一个稍微复杂一些的问题。一方面，作为benchmark，它需要尽量契合硬件配置，以充分利用机器能提供的最高算力；另一方面，在对照实验中，我们应当控制变量，从而尽可能排除由于参数设置不同影响实验结果的情况。因此，有必要使用一个尽可能通用的运行参数设置，同时针对各个实验进行微调。如果没有特别提及的输入参数，均默认使用\autoref{HPL.dat}中的内容。
+
+\begin{figure}[h]
+    \centering
+    \begin{bash}
+        HPLinpack and HPL-AI benchmark input file
+        National Supercomputer Center in Guangzhou, Sun Yat-sen University
+        HPL.out      output file name (if any)
+        6            device out (6=stdout,7=stderr,file)
+        1            # of problems sizes (N)
+        131072       Ns
+        2            # of NBs
+        192 192      NBs
+        0            PMAP process mapping (0=Row-,1=Column-major)
+        1            # of process grids (P x Q)
+        2            Ps
+        4            Qs
+        16.0         threshold
+        1            # of panel fact
+        2 1 0        PFACTs (0=left, 1=Crout, 2=Right)
+        1            # of recursive stopping criterium
+        2 8          NBMINs (>= 1)
+        1            # of panels in recursion
+        2            NDIVs
+        1            # of recursive panel fact.
+        2 1 0        RFACTs (0=left, 1=Crout, 2=Right)
+        1            # of broadcast
+        0 2          BCASTs (0=1rg,1=1rM,2=2rg,3=2rM,4=Lng,5=LnM)
+        1            # of lookahead depth
+        1            DEPTHs (>=0)
+        1            SWAP (0=bin-exch,1=long,2=mix)
+        192          swapping threshold
+        1            L1 in (0=transposed,1=no-transposed) form
+        0            U  in (0=transposed,1=no-transposed) form
+        1            Equilibration (0=no,1=yes)
+        16           memory alignment in HPLAI_T_AFLOAT (> 0)
+    \end{bash}
+    \caption{HPL.dat}
+    \label{HPL.dat}
+\end{figure}
+
+此处重复设置$\mathit{NB}$以使用\autoref{热身运行}中的策略。值得注意的是，此处设置$\mathit{NB}=192$，这是适合于CPU的参数，以减少Cache Miss。在异构处理器上运行HPL或HPL-AI时通常需要取更大的值，从而充分利用异构处理器的矩阵算力。在本文中对于NPU我们选取$\mathit{NB}=4096$，对于GPU我们选取$\mathit{NB}=2048$。
+
+\section{实验与分析}
+
+我们设计了如下三个实验，对我们的HPL-AI软件包进行测试。
+
+\subsection{AscendCL接口与算子调用实验}
+\label{AscendCL接口与算子调用实验}
+
+运行我们的Profile代码\footnote{我们的完整Profile代码提供在\url{https://wu-kan.cn/2021/03/21/\%E5\%8D\%8E\%E4\%B8\%BA\%E6\%98\%87\%E8\%85\%BE910\%E4\%BD\%BF\%E7\%94\%A8\%E5\%88\%9D\%E6\%8E\%A2/}}得到\autoref{AscendCL接口/算子耗时表}，给出$\left(M,N,K\right)=\left(8192,8192,8192\right)$时各接口和算子的耗时情况。
+
+\begin{table}[h] %voc table result
+    \centering
+    \caption{AscendCL接口/算子耗时表}
+    \label{AscendCL接口/算子耗时表}
+    \begin{tabular}{c|c|c}
+        \toprule
+        接口/算子              & 运行时间    & 有效算力       \\
+        \midrule
+        aclInit                & 4.422 ms    & /              \\
+        \hline
+        aclrtCreateContext     & 351.026 ms  & /              \\
+        \hline
+        aclrtSetCurrentContext & 0.006 ms    & /              \\
+        \hline
+        aclrtMalloc            & 198.336 ms  & /              \\
+        \hline
+        aclrtMemcpyAsync       & 11.689 ms   & /              \\
+        \hline
+        Cast(aclFloat16)       & 0.498 ms    & /              \\
+        \hline
+        Cast(float)            & 0.484 ms    & /              \\
+        \hline
+        MatMulV2(FP16)         & 5.613 ms    & 195.887 TFLOPS \\
+        \hline
+        MatMulV2(FP32)         & 1154.355 ms & 0.952 TFLOPS   \\
+        \hline
+        MatMul(FP16)           & 5.610 ms    & 195.991 TFLOPS \\
+        \hline
+        MatMul(FP32)           & 1154.473 ms & 0.952 TFLOPS   \\
+        \hline
+        GEMM(FP16)             & 202.152 ms  & 5.439 TFLOPS   \\
+        \hline
+        aclrtFree              & 59.107 ms   & /              \\
+        \hline
+        aclrtDestroyContext    & 186.624 ms  & /              \\
+        \hline
+        aclFinalize            & 349.656 ms  & /              \\
+        \hline
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+根据 Profile 结果可以得到以下结论：
 
 \begin{itemize}
-    \item \autoref{cha:usage-example}
-    \item  \autoref{sec:font}
-    \item  \autoref{sec:font:subsection}
-    \item  \autoref{sec:font:subsection:subsub}
+    \item 创建上下文、申请内存、释放内存、释放上下文、去初始化的开销都很大，需要在运行算法时尽量避免相关调用。
+    \item \lstinline{MatMul} 算子调用时间远低于三次 \lstinline{aclrtMemcpy}（表中Memcpy仅包含一个矩阵拷贝的时间）。换言之，开销主要在主机和设备的通信，而非设备上的计算上。
+    \item 切换上下文开销很低，但创建释放上下文的开销仍然很高，必要时仍要使用 \lstinline{aclrtStream}。
+    \item \lstinline{GEMM} 算子性能远低于 \lstinline{MatMul} 和 \lstinline{MatMulV2}，合理推断向量单元和标量单元性能远低于矩阵单元。
+    \item 使用单精度的MatMul比半精度的MatMul慢了几个数量级，比较鸡肋。
 \end{itemize}
 
+\subsection{可扩展性验证实验}
 
-\subsection{列表的使用}
-\label{sec:font:list}
+对于$N\in\lbrace 4096,8192,16384,32768,65536,131072\rbrace$，在Atlas上使用8、16、32、64、128、192核心运行hpl-ai@2.3d，得到\autoref{HPL-AI效率测试表}（/TFLOPS），验证HPL-AI软件包的可扩展性。
 
-这是一个无序列表
-\begin{itemize}
-    \item 引用文献\cite{long2015fully}
-    \item 引用文献作者\citeauthor{long2015fully}
-    \item 引用文献年份\citeyear{long2015fully} 
-    \item 字体{\color{red}{变红}}，\textbf{粗体}，\textit{斜体}，\underline{下划线}。
-\end{itemize}
+\begin{table}[h] %voc table result
+    \centering
+    \caption{HPL-AI效率测试表}
+    \label{HPL-AI效率测试表}
+    \begin{tabular}{c|cccccc}
+        \toprule
+        问题规模$\backslash$并行核数 & 8     & 16    & 32    & 64    & 128   & 192   \\
+        \midrule
+        4096                         & 0.013 & 0.215 & 0.323 & 0.428 & 0.456 & 0.112 \\
+        \hline
+        8192                         & 0.016 & 0.305 & 0.526 & 0.816 & 1.052 & 1.080 \\
+        \hline
+        16384                        & 0.019 & 0.358 & 0.673 & 1.172 & 1.683 & 2.018 \\
+        \hline
+        32768                        & 0.020 & 0.389 & 0.752 & 1.331 & 2.331 & 2.766 \\
+        \hline
+        65536                        & 0.021 & 0.417 & 0.816 & 1.532 & 2.732 & 3.660 \\
+        \hline
+        131072                       & 0.022 & 0.432 & 0.853 & 1.660 & 3.103 & 4.340 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
 
-这是一个有序列表
-\begin{enumerate}
-    \item 索引前面的\autoref{sec:formula}、图像\ref{fig:complex}、表格\ref{tab:siftflow}
-    \item 加脚注\footnote{测{\zihao{-5}试一下}脚注和URL \url{http://cs231n.github.io/transfer-learning/}}
-\end{enumerate}
+由\autoref{HPL-AI具有强可扩展性}可以看到，问题规模足够大时，固定问题（不妨取$N=131072$）规模，有效算力随并行核数增加线性增长，该应用有\textbf{强可扩展性}。在问题规模小的时候（如$N=4096$），单节点过多的并行核数反而会导致诸如伪共享\footnote{\url{https://en.wikipedia.org/wiki/False_sharing}}的问题，使程序变慢。
 
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[xlabel=并行核数,ylabel=效率/TFLOPS,legend pos=outer north east] % 将图例放在图外，位于图的东北角
+            \addplot
+            coordinates                             % 绘制原始数据的折线图
+                {           		                % X，Y的原始数据
+                    (8,0.22)
+                    (16,0.432)
+                    (32,0.853)
+                    (64,1.660)
+                    (128,3.103)
+                    (192,4.340)
+                };
+            \addlegendentry{$N=131072$}
+            \addplot
+            coordinates                              % 绘制原始数据的折线图
+                {           		                % X，Y的原始数据
+                    (8,0.21)
+                    (16,0.417)
+                    (32,0.816)
+                    (64,1.532)
+                    (128,2.732)
+                    (192,3.660)
+                };
+            \addlegendentry{$N=65536$}
+            \addplot
+            coordinates                                 % 绘制原始数据的折线图
+                {           		                % X，Y的原始数据
+                    (8,0.020)
+                    (16,0.389)
+                    (32,0.752)
+                    (64,1.331)
+                    (128,2.331)
+                    (192,2.766)
+                };
+            \addlegendentry{$N=32768$}
+            \addplot
+            coordinates                                 % 绘制原始数据的折线图
+                {           		                % X，Y的原始数据
+                    (8,0.019)
+                    (16,0.358)
+                    (32,0.673)
+                    (64,1.172)
+                    (128,1.683)
+                    (192,2.018)
+                };
+            \addlegendentry{$N=16384$}
+            \addplot
+            coordinates                                 % 绘制原始数据的折线图
+                {           		                % X，Y的原始数据
+                    (8,0.016)
+                    (16,0.305)
+                    (32,0.526)
+                    (64,0.816)
+                    (128,1.052)
+                    (192,1.080)
+                };
+            \addlegendentry{$N=8192$}
+            \addplot
+            coordinates                               % 绘制原始数据的折线图
+                {           		                % X，Y的原始数据
+                    (8,0.013)
+                    (16,0.215)
+                    (32,0.323)
+                    (64,0.428)
+                    (128,0.456)
+                    (192,0.112)
+                };
+            \addlegendentry{$N=4096$}
+        \end{axis}
+    \end{tikzpicture}
+    \caption{HPL-AI具有强可扩展性}
+    \label{HPL-AI具有强可扩展性}
+\end{figure}
 
+\subsection{NPU加速验证实验}
+
+在Atlas上运行hpl@2.3、hpl-ai@2.3d、hpl-ai@2.3d+ascendcl（$\mathit{NB}=4096$），在X86+CUDA验证平台运行hpl@2.3、hpl-ai@2.3d、hpl-ai@2.3d+cuda（$\mathit{NB}=2048$）、hpl-ai@2.3d+cuda cublasGemmEx\_computeType=fp16（$\mathit{NB}=2048$），对比并验证hpl-ai@2.3d+ascendcl的移植加速效果，得到\autoref{NPU加速验证表}和\autoref{实测性能对照图}。
+
+\begin{table}[h] %voc table result
+    \centering
+    \caption{NPU加速验证表}
+    \label{NPU加速验证表}
+    \resizebox{\textwidth}{!}{
+        \begin{tabular}{c|c|c|c|c}
+            \toprule
+            编号                  & 测试软件包                                      & 测试平台 & 运行时间      & 有效算力     \\
+            \midrule
+            \#1                   & hpl@2.3                                         & Atlas    & 905.95s       & 1.657 TFLOPS \\
+            \hline
+            \#2                   & hpl-ai@2.3d                                     & Atlas    & 345.90s       & 4.340 TFLOPS \\
+            \hline
+            \#3                   & \tabincell{c}{hpl-ai@2.3d+ascendcl $\backslash$                                           \\($\mathit{NB}=4096$)} & Atlas & 261.84s & 5.733 TFLOPS  \\
+            \hline
+            \#4                   & hpl@2.3                                         & X86+CUDA & 718.88s       & 2.088 TFLOPS \\
+            \hline
+            \#5                   & hpl-ai@2.3d                                     & X86+CUDA & 360.70s       & 4.162 TFLOPS \\
+            \hline
+            \#6                   & \tabincell{c}{
+                hpl-ai@2.3d+cuda $\backslash$                                                                                 \\
+            ($\mathit{NB}=2048$)} & X86+CUDA                                        & 112.95s  & 13.291 TFLOPS                \\
+            \hline
+            \#7                   & \tabincell{c}{
+                hpl-ai@2.3d+cuda $\backslash$                                                                                 \\
+                cublasGemmEx\_computeType=fp16 $\backslash$                                                                   \\($\mathit{NB}=2048$)} & X86+CUDA & 103.69s & 14.477 TFLOPS  \\
+            \bottomrule
+        \end{tabular}}
+
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}
+            [
+                ybar,
+                ylabel={实测性能/TFLOPS}, % the ylabel must precede a # symbol.
+                xlabel={实验算例},
+                symbolic x coords={\#1, \#2, \#3, \#4, \#5, \#6, \#7},
+                legend pos=outer north east
+            ]
+
+            \addplot coordinates {(\#1, 1.657) (\#2, 4.296) (\#3, 5.733)};
+            \addlegendentry{ARM+NPU};
+            \addplot coordinates {(\#4, 2.088) (\#5, 4.162) (\#6, 13.291) (\#7, 14.477)};
+            \addlegendentry{X86+GPU};
+
+        \end{axis}
+    \end{tikzpicture}
+    \caption{实测性能对照图}
+    \label{实测性能对照图}
+\end{figure}
+
+对比\#1、\#2可知，相对于HPL，我们的HPL-AI在Atlas使用单精度取得了$2.59\times$的加速比。一方面，使用单精度运算可以使用比FP64运算单元更多的FP32计算单元；另一方面，使用低精度计算也减少了算法运行时的通信开销和CacheMiss。
+
+对比\#5、\#6、\#7可知，我们的HPL-AI可以使用异构加速卡取得明显性能提升，且引入混合精度的计算可以获得更高的收益。
+
+对比\#3、\#7，虽然此处的参数$N$设置虽然均远没有让两台机器的异构处理器满载\footnote{此处选择的$N$需要大量不同规格的Cast+MatMulV2算子，即使使用\autoref{算子编译脚本}中的并行编译脚本也需要数个小时才能进行一次完整测试。继续扩大$N$会导致算子数量的进一步上升，短时间内很难进行进行参数调优。}，也可明显对比NPU与GPU的性能差异。
+
+一方面，由\autoref{AscendCL接口与算子调用实验}可知，在我们的应用中使用昇腾910的瓶颈主要来自于三次\lstinline{aclrtMemcpy}过程，其耗时是调用\lstinline{MatMul}算子的六倍之多；而此处我们使用的A100是NVLink接口版本，其带宽高达600GB/S，远大于使用昇腾910的64GB/S（PCIe4.0）\footnote{\autoref{AscendCL接口与算子调用实验}中实测性能约为21GB/S}，因此可以更加充分的利用异构加速卡上的算力。因此，通信带宽是昇腾910的一个明显瓶颈；若后续版本的昇腾处理器提升其与主机的通信带宽，则可在HPL-AI基准中获得更高的计算效率。
+
+另一方面，昇腾910是专门面向为AI应用设计的处理器，本身并非适合通用计算，而NVIDIA A100则可以使用cuBLAS中专门调优过的gemm接口和trsm接口。国产异构处理器在软件生态建设上仍任重而道远。

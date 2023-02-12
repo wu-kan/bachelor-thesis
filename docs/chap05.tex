@@ -1,9 +1,27 @@
-%% chapter 5 dataset, network structure, experiment and result
-\chapter{实验与结果}
-\label{cha:experiment}
+\chapter{总结与展望}
+\label{总结与展望}
 
-\section{关于生僻字}
+\section{总结}
 
-测试生僻字
+在本文中，我们首先介绍了HPL-AI基准的背景和相关工作，并分析了HPL-AI的基本规则，介绍了使用到的矩阵生成算法、LU分解算法、数值迭代算法。
 
-昇䊒熗庈焾燋庼廎㶭粌纇颣炥䊧彂㢕糑鄜麛麚䴫麌䴠麎塵䴣麆麠䴤麖䴨䴩䴪麘麞麡麍麏麐麔	
+随后，基于对硬件架构的分析以及对接口、算子调用的Profiling，我们面向华为Atlas 800-9000 AI训练服务器上搭载的国产异构处理器昇腾910设计出一套合理的移植优化方案，以充分利用其半精度算力。
+
+然后，我们以X86+CUDA平台为对照组，将HPL和我们的HPL-AI性能进行对比。实验结果表明，借助混合精度矩阵分解算法和数值迭代算法，我们的实现能获得与HPL相当的计算精度，且得到明显性能提升。
+
+我们的工作为不同平台上的HPL-AI基准测试给出可信参照，也对在昇腾平台或其他异构计算平台上的HPC/AI应用优化有很强的指导意义。
+
+\section{展望}
+
+时间所限，在本次毕业设计前我仅完成了对HPL-AI的初步实现和移植。后续交付鹏城实验室后，以下工作仍然是值得被考虑的：
+
+\begin{enumerate}
+    \item 使用昇腾910的RC模式\footnote{\url{https://support.huaweicloud.com/asdevg-c-cann/atlassample_14_0010.html}}启动HPL-AI，免去通信开销。由于其板载CPU性能远低于主机端CPU性能，且内存只有16GB，实际表现仍是值得商榷的。
+    \item 可以参照英伟达 hpl-2.0\_FERMI\_v15.tgz \footnote{\url{https://developer.nvidia.com/rdp/assets/cuda-accelerated-linpack-linux64}}中的手段，使用多流等手段提高异构处理器的负载；
+    \item 由于CPU同为ARM架构，\cite{DBLP:conf/scala-ws/KudoNII20}在``富岳''上的工作对我们有很强的参考意义。例如：
+          \begin{enumerate}
+              \item Single iteration scheme for IR相较于GMRES开销更低；
+              \item On-The-Fly matrix generation可减少主机端内存上的占用。当然，对于我们的移植平台，限制可能更多来自于异构处理器的存储空间。
+          \end{enumerate}
+    \item 探索传统HPL的优化方法，如针对``鹏城云脑II''的网络拓扑，优化HPL-AI的MPI调用。由于我们的HPL-AI是参照HPL实现的，大部分对于HPL的优化都可以考虑应用到HPL-AI上。
+\end{enumerate}

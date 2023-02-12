@@ -3,50 +3,291 @@
 % 参考文献是毕业设计(论文)不可缺少的组成部分,它反映毕业设计(论文)的取材来源、材料的广博程度和材料的可靠程度,也是作者对他人知识成果的承认和尊重。一份完整的参考文献可向读者提供一份有价值的信息资料,列入的文献应在 10 篇以上,其中外文文献在 2 篇以上。
 %%
 
-@program{sysu-thesis,
-  title  = {中山大学毕业论文Latex模板},
-  author = {Songguang Chen and Junjie Huang  and Yongfeng, Wang},
-  url    = {https://github.com/SYSU-SCC/sysu-thesis},
-  year   = {2020}
+@book{dongarra1979linpack,
+  title     = {LINPACK users' guide},
+  author    = {Dongarra, Jack J and Moler, Cleve Barry and Bunch, James R and Stewart, Gilbert W},
+  year      = {1979},
+  url       = {http://www.netlib.org/linpack/},
+  publisher = {SIAM}
 }
 
-@article{liu2011sift,
-  title     = {Sift flow: Dense correspondence across scenes and its applications},
-  author    = {Liu, Ce and Yuen, Jenny and Torralba, Antonio},
-  journal   = {Pattern Analysis and Machine Intelligence, IEEE Transactions on},
-  volume    = {33},
-  number    = {5},
-  pages     = {978--994},
-  year      = {2011},
-  publisher = {IEEE}
+@article{saad1986communication,
+  title     = {Communication complexity of the Gaussian elimination algorithm on multiprocessors},
+  author    = {Saad, Youcef},
+  journal   = {Linear Algebra and its Applications},
+  volume    = {77},
+  pages     = {315--340},
+  year      = {1986},
+  publisher = {Elsevier}
 }
-@inproceedings{tighe2013finding,
-  title     = {Finding things: Image parsing with regions and per-exemplar detectors},
-  author    = {Tighe, Joseph and Lazebnik, Svetlana},
-  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-  pages     = {3001--3008},
+
+@article{1986GMRES,
+  title     = {GMRES: A generalized minimal residual algorithm for solving nonsymmetric linear systems},
+  author    = {Saad, Youcef and Schultz, Martin H},
+  journal   = {SIAM Journal on scientific and statistical computing},
+  volume    = {7},
+  number    = {3},
+  pages     = {856--869},
+  year      = {1986},
+  publisher = {SIAM}
+}
+
+@article{fox1987matrix,
+  title     = {Matrix algorithms on a hypercube I: Matrix multiplication},
+  author    = {Fox, Geoffrey C and Otto, Steve W and Hey, Anthony JG},
+  journal   = {Parallel computing},
+  volume    = {4},
+  number    = {1},
+  pages     = {17--31},
+  year      = {1987},
+  publisher = {Elsevier}
+}
+
+@article{1988Implementation,
+  title   = {Implementation of the GMRES Method Using Householder Transformations},
+  author  = {Walker, H. F. },
+  journal = {SIAM Journal on Scientific and Statistical Computing},
+  volume  = {9},
+  number  = {1},
+  year    = {1988}
+}
+
+@article{geist1988lu,
+  title     = {LU factorization algorithms on distributed-memory multiprocessor architectures},
+  author    = {Geist, George A and Romine, Charles H},
+  journal   = {SIAM Journal on Scientific and Statistical Computing},
+  volume    = {9},
+  number    = {4},
+  pages     = {639--649},
+  year      = {1988},
+  publisher = {SIAM}
+}
+
+@article{heath1988parallel,
+  title     = {Parallel solution of triangular systems on distributed-memory multiprocessors},
+  author    = {Heath, Michael T and Romine, Charles H},
+  journal   = {SIAM Journal on Scientific and Statistical Computing},
+  volume    = {9},
+  number    = {3},
+  pages     = {558--588},
+  year      = {1988},
+  publisher = {SIAM}
+}
+
+@article{li1988parallel,
+  title     = {A parallel triangular solver for a distributed-memory multiprocessor},
+  author    = {Li, Guangye and Coleman, Thomas F},
+  journal   = {SIAM Journal on Scientific and Statistical Computing},
+  volume    = {9},
+  number    = {3},
+  pages     = {485--502},
+  year      = {1988},
+  publisher = {SIAM}
+}
+
+@article{li1989new,
+  title     = {A new method for solving triangular systems on distributed-memory message-passing multiprocessors},
+  author    = {Li, Guangye and Coleman, Thomas F},
+  journal   = {SIAM Journal on Scientific and Statistical Computing},
+  volume    = {10},
+  number    = {2},
+  pages     = {382--396},
+  year      = {1989},
+  publisher = {SIAM}
+}
+
+@inproceedings{elster1990basic,
+  title        = {Basic matrix subprograms for distributed memory systems},
+  author       = {Elster, A},
+  booktitle    = {Proceedings of the Fifth Distributed Memory Computing Conference},
+  pages        = {311},
+  year         = {1990},
+  organization = {IEEE Press}
+}
+
+@article{bisseling1991parallel,
+  title     = {Parallel Triangular System Solving on a mesh network of Transputers},
+  author    = {Bisseling, Rob H and van de Vorst, Johannes GG},
+  journal   = {SIAM Journal on Scientific and Statistical Computing},
+  volume    = {12},
+  number    = {4},
+  pages     = {787--799},
+  year      = {1991},
+  publisher = {SIAM}
+}
+
+@article{dongarra1994scalability,
+  title     = {Scalability issues affecting the design of a dense linear algebra library},
+  author    = {Dongarra, Jack J and Vandegeijn, Robert A and Walker, David W},
+  journal   = {Journal of Parallel and Distributed Computing},
+  volume    = {22},
+  number    = {3},
+  pages     = {523--537},
+  year      = {1994},
+  publisher = {Elsevier}
+}
+
+@article{choi1994pumma,
+  title     = {PUMMA: Parallel universal matrix multiplication algorithms on distributed memory concurrent computers},
+  author    = {Choi, Jaeyoung and Walker, David W and Dongarra, Jack J},
+  journal   = {Concurrency: Practice and Experience},
+  volume    = {6},
+  number    = {7},
+  pages     = {543--570},
+  year      = {1994},
+  publisher = {Wiley Online Library}
+}
+
+@article{choi1996design,
+  title     = {Design and implementation of the ScaLAPACK LU, QR, and Cholesky factorization routines},
+  author    = {Choi, Jaeyoung and Dongarra, Jack J and Ostrouchov, L Susan and Petitet, Antoine P and Walker, David W and Whaley, R Clint},
+  journal   = {Scientific Programming},
+  volume    = {5},
+  number    = {3},
+  pages     = {173--184},
+  year      = {1996},
+  publisher = {IOS Press}
+}
+
+@article{toledo1997locality,
+  title     = {Locality of reference in LU decomposition with partial pivoting},
+  author    = {Toledo, Sivan},
+  journal   = {SIAM Journal on Matrix Analysis and Applications},
+  volume    = {18},
+  number    = {4},
+  pages     = {1065--1081},
+  year      = {1997},
+  publisher = {SIAM}
+}
+
+@article{gustavson1997recursion,
+  title     = {Recursion leads to automatic variable blocking for dense linear-algebra algorithms},
+  author    = {Gustavson, Fred G},
+  journal   = {IBM Journal of Research and Development},
+  volume    = {41},
+  number    = {6},
+  pages     = {737--755},
+  year      = {1997},
+  publisher = {IBM}
+}
+
+@program{HPL,
+  title  = {HPL - A Portable Implementation of the High-Performance Linpack Benchmark for Distributed-Memory Computers},
+  author = {Petitet, A. and Whaley, R. C. and Dongarra, J. and Cleary, A.},
+  url    = {http://www.netlib.org/benchmark/hpl/},
+  year   = {2000}
+}
+
+@inproceedings{endo2010linpack,
+  title        = {Linpack evaluation on a supercomputer with heterogeneous accelerators},
+  author       = {Endo, Toshio and Matsuoka, Satoshi and Nukada, Akira and Maruyama, Naoya},
+  booktitle    = {2010 IEEE International Symposium on Parallel \& Distributed Processing (IPDPS)},
+  pages        = {1--8},
+  year         = {2010},
+  organization = {IEEE}
+}
+
+@article{wang2011optimizing,
+  title     = {Optimizing linpack benchmark on gpu-accelerated petascale supercomputer},
+  author    = {Wang, Feng and Yang, Can-Qun and Du, Yun-Fei and Chen, Juan and Yi, Hui-Zhan and Xu, Wei-Xia},
+  journal   = {Journal of Computer Science and Technology},
+  volume    = {26},
+  number    = {5},
+  pages     = {854},
+  year      = {2011},
+  publisher = {Springer}
+}
+
+@inproceedings{2013Correcting,
+  title     = {Correcting soft errors online in LU factorization},
+  author    = { Davies, T.  and  Chen, Z. },
+  booktitle = {Proceedings of the 22nd international symposium on High-performance parallel and distributed computing},
   year      = {2013}
 }
-@inproceedings{long2015fully,
-  title     = {Fully convolutional networks for semantic segmentation},
-  author    = {Long, Jonathan and Shelhamer, Evan and Darrell, Trevor},
-  booktitle = {Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition},
-  pages     = {3431--3440},
-  year      = {2015}
-}
-@inproceedings{chen14semantic,
-  title     = {Semantic Image Segmentation with Deep Convolutional Nets and Fully Connected CRFs},
-  author    = {Liang-Chieh Chen and George Papandreou and Iasonas Kokkinos and Kevin Murphy and Alan L Yuille},
-  booktitle = {ICLR},
-  url       = {http://arxiv.org/abs/1412.7062},
-  year      = {2015}
-}
-@incollection{hariharan2014simultaneous,
-  title     = {Simultaneous detection and segmentation},
-  author    = {Hariharan, Bharath and Arbel{\'a}ez, Pablo and Girshick, Ross and Malik, Jitendra},
-  booktitle = {Computer vision--ECCV 2014},
-  pages     = {297--312},
+
+@article{liao2014milkyway,
+  title     = {MilkyWay-2 supercomputer: system and application},
+  author    = {Liao, Xiangke and Xiao, Liquan and Yang, Canqun and Lu, Yutong},
+  journal   = {Frontiers of Computer Science},
+  volume    = {8},
+  number    = {3},
+  pages     = {345--356},
   year      = {2014},
   publisher = {Springer}
 }
 
+@inproceedings{2015The,
+  title     = {The Spack package manager: bringing order to HPC software chaos},
+  author    = { Gamblin, T.  and  Legendre, M.  and  Collette, M. R.  and  Lee, G. L.  and  Futral, S. },
+  booktitle = {the International Conference for High Performance Computing, Networking, Storage and Analysis},
+  year      = {2015}
+}
+
+@inproceedings{haidar2018harnessing,
+  title        = {Harnessing GPU tensor cores for fast FP16 arithmetic to speed up mixed-precision iterative refinement solvers},
+  author       = {Haidar, Azzam and Tomov, Stanimire and Dongarra, Jack and Higham, Nicholas J},
+  booktitle    = {SC18: International Conference for High Performance Computing, Networking, Storage and Analysis},
+  pages        = {603--613},
+  year         = {2018},
+  organization = {IEEE}
+}
+
+@article{carson2018accelerating,
+  title     = {Accelerating the solution of linear systems by iterative refinement in three precisions},
+  author    = {Carson, Erin and Higham, Nicholas J},
+  journal   = {SIAM Journal on Scientific Computing},
+  volume    = {40},
+  number    = {2},
+  pages     = {A817--A847},
+  year      = {2018},
+  publisher = {SIAM}
+}
+
+@article{blanchard2020mixed,
+  title     = {Mixed precision block fused multiply-add: Error analysis and application to GPU tensor cores},
+  author    = {Blanchard, Pierre and Higham, Nicholas J and Lopez, Florent and Mary, Theo and Pranesh, Srikara},
+  journal   = {SIAM Journal on Scientific Computing},
+  volume    = {42},
+  number    = {3},
+  pages     = {C124--C141},
+  year      = {2020},
+  publisher = {SIAM}
+}
+
+@article{dongarrahpl,
+  title   = {HPL-AI mixed-precision benchmark},
+  author  = {Dongarra, Jack J and Luszczek, Piotr and Tsai, Yaohung M},
+  year    = {2019},
+  url     = {https://icl.bitbucket.io/hpl-ai/},
+  journal = {See https://icl. bitbucket. io/hpl-ai}
+}
+
+@inproceedings{DBLP:conf/scala-ws/KudoNII20,
+  author    = {Shuhei Kudo and
+               Keigo Nitadori and
+               Takuya Ina and
+               Toshiyuki Imamura},
+  title     = {Implementation and Numerical Techniques for One EFlop/s {HPL-AI} Benchmark
+               on Fugaku},
+  booktitle = {11th {IEEE/ACM} Workshop on Latest Advances in Scalable Algorithms
+               for Large-Scale Systems, ScalA@SC 2020, Virtual Event, USA, November
+               13, 2020},
+  pages     = {69--76},
+  publisher = {{IEEE}},
+  year      = {2020},
+  url       = {https://doi.org/10.1109/ScalA51936.2020.00014},
+  doi       = {10.1109/ScalA51936.2020.00014},
+  timestamp = {Wed, 17 Feb 2021 15:30:11 +0100},
+  biburl    = {https://dblp.org/rec/conf/scala-ws/KudoNII20.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@article{2021Matrices,
+  title   = {Matrices with Tunable Infinity-Norm Condition Number and No Need for Pivoting in LU Factorization},
+  author  = {Fasi, Massimiliano  and  Higham, Nicholas J. },
+  journal = {SIAM Journal on Matrix Analysis and Applications},
+  volume  = {42},
+  number  = {1},
+  pages   = {417-435},
+  year    = {2021}
+}
